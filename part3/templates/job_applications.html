@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Job Applications</h2>
+    <a href="/job_applications/new" class="btn btn-success">New Application</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Caregiver ID</th>
+            <th>Job ID</th>
+            <th>Date Applied</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app['caregiver_user_id'] }}</td>
+            <td>{{ app['job_id'] }}</td>
+            <td>{{ app['date_applied'] }}</td>
+            <td>
+                <form action="/job_applications/{{ app['caregiver_user_id'] }}/{{ app['job_id'] }}/delete" method="POST"
+                    class="d-inline" onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

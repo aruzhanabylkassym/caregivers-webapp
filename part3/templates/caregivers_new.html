@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Caregiver</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color:#fafafa; margin:0; padding:0; }
+        .container { width: 50%; margin: 80px auto; background:white; padding:40px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
+        h1 { text-align:center; margin-bottom:30px; }
+        label { display:block; margin-top:15px; font-size:16px; }
+        input { width:100%; padding:10px; font-size:16px; border-radius:6px; border:1px solid #ccc; }
+        button { margin-top:25px; width:100%; padding:12px; font-size:18px; border:none; border-radius:8px; background:#4CAF50; color:white; cursor:pointer; }
+        button:hover { background:#3e8e41; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>New Caregiver</h1>
+
+    <form action="/caregivers/create" method="POST">
+        <label>User ID (must exist in app_user):</label>
+        <input name="user_id">
+
+        <label>Photo filename:</label>
+        <input name="photo">
+
+        <label>Gender:</label>
+        <input name="gender">
+
+        <label>Type:</label>
+        <input name="caregiving_type">
+
+        <label>Hourly Rate:</label>
+        <input name="hourly_rate">
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+</body>
+</html>

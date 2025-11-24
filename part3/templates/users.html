@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Users</h2>
+    <a href="/users/new" class="btn btn-success">Add New User</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user['user_id'] }}</td>
+            <td>{{ user['email'] }}</td>
+            <td>{{ user['given_name'] }} {{ user['surname'] }}</td>
+            <td>{{ user['city'] }}</td>
+            <td>{{ user['phone_number'] }}</td>
+            <td>
+                <a href="/users/{{ user['user_id'] }}/edit" class="btn btn-sm btn-primary">Edit</a>
+                <form action="/users/{{ user['user_id'] }}/delete" method="POST" class="d-inline"
+                    onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

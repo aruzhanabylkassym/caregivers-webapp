@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome to Caregivers DB</h1>
+        <p class="col-md-8 fs-4">Manage users, caregivers, members, jobs, and appointments efficiently.</p>
+        <hr class="my-4">
+        <p>Select a category from the menu to get started.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-primary btn-lg" href="/caregivers" role="button">Find Caregivers</a>
+            <a class="btn btn-outline-secondary btn-lg" href="/jobs" role="button">View Jobs</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

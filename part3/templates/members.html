@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Members</h2>
+    <a href="/members/new" class="btn btn-success">Add New Member</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>House Rules</th>
+            <th>Dependent Description</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member['member_user_id'] }}</td>
+            <td>{{ member['given_name'] }} {{ member['surname'] }}</td>
+            <td>{{ member['house_rules'] }}</td>
+            <td>{{ member['dependent_description'] }}</td>
+            <td>{{ member['city'] }}</td>
+            <td>
+                <a href="/members/{{ member['member_user_id'] }}/edit" class="btn btn-sm btn-primary">Edit</a>
+                <form action="/members/{{ member['member_user_id'] }}/delete" method="POST" class="d-inline"
+                    onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

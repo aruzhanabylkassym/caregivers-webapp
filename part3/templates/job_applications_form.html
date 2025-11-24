@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>New Job Application</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="caregiver_user_id" class="form-label">Caregiver ID</label>
+        <input type="number" class="form-control" id="caregiver_user_id" name="caregiver_user_id" required>
+    </div>
+    <div class="mb-3">
+        <label for="job_id" class="form-label">Job ID</label>
+        <input type="number" class="form-control" id="job_id" name="job_id" required>
+    </div>
+    <div class="mb-3">
+        <label for="date_applied" class="form-label">Date Applied</label>
+        <input type="date" class="form-control" id="date_applied" name="date_applied" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Apply</button>
+    <a href="/job_applications" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Caregivers</h2>
+    <a href="/caregivers/new" class="btn btn-success">Add New Caregiver</a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" action="/caregivers" class="row g-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="type" placeholder="Caregiving Type"
+                    value="{{ request.args.get('type', '') }}">
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="city" placeholder="City"
+                    value="{{ request.args.get('city', '') }}">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="/caregivers" class="btn btn-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Gender</th>
+            <th>Type</th>
+            <th>Hourly Rate</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for caregiver in caregivers %}
+        <tr>
+            <td>{{ caregiver['caregiver_user_id'] }}</td>
+            <td>{{ caregiver['given_name'] }} {{ caregiver['surname'] }}</td>
+            <td>{{ caregiver['photo'] }}</td>
+            <td>{{ caregiver['gender'] }}</td>
+            <td>{{ caregiver['caregiving_type'] }}</td>
+            <td>${{ caregiver['hourly_rate'] }}</td>
+            <td>{{ caregiver['city'] }}</td>
+            <td>
+                <a href="/caregivers/{{ caregiver['caregiver_user_id'] }}/edit" class="btn btn-sm btn-primary">Edit</a>
+                <form action="/caregivers/{{ caregiver['caregiver_user_id'] }}/delete" method="POST" class="d-inline"
+                    onsubmit="return confirm('Are you sure?');">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

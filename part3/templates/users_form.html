@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Edit User' if user else 'New User' }}</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user['email'] if user else '' }}"
+            required>
+    </div>
+    <div class="mb-3">
+        <label for="given_name" class="form-label">Given Name</label>
+        <input type="text" class="form-control" id="given_name" name="given_name"
+            value="{{ user['given_name'] if user else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="surname" class="form-label">Surname</label>
+        <input type="text" class="form-control" id="surname" name="surname"
+            value="{{ user['surname'] if user else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city" value="{{ user['city'] if user else '' }}"
+            required>
+    </div>
+    <div class="mb-3">
+        <label for="phone_number" class="form-label">Phone Number</label>
+        <input type="text" class="form-control" id="phone_number" name="phone_number"
+            value="{{ user['phone_number'] if user else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="profile_description" class="form-label">Profile Description</label>
+        <textarea class="form-control" id="profile_description"
+            name="profile_description">{{ user['profile_description'] if user else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" class="form-control" id="password" name="password"
+            value="{{ user['password'] if user else '' }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/users" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

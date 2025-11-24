@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Edit Address' if address else 'New Address' }}</h2>
+
+<form method="POST">
+    {% if not address %}
+    <div class="mb-3">
+        <label for="member_user_id" class="form-label">Member ID (Must be an existing Member)</label>
+        <input type="number" class="form-control" id="member_user_id" name="member_user_id" required>
+        <div class="form-text">Enter the ID of the member who owns this address.</div>
+    </div>
+    {% else %}
+    <div class="mb-3">
+        <label class="form-label">Member ID</label>
+        <input type="text" class="form-control" value="{{ address['member_user_id'] }}" disabled>
+    </div>
+    {% endif %}
+
+    <div class="mb-3">
+        <label for="house_number" class="form-label">House Number</label>
+        <input type="number" class="form-control" id="house_number" name="house_number"
+            value="{{ address['house_number'] if address else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="street" class="form-label">Street</label>
+        <input type="text" class="form-control" id="street" name="street"
+            value="{{ address['street'] if address else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="town" class="form-label">Town</label>
+        <input type="text" class="form-control" id="town" name="town" value="{{ address['town'] if address else '' }}"
+            required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/addresses" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

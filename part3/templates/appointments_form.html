@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ 'Edit Appointment' if appointment else 'New Appointment' }}</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="caregiver_user_id" class="form-label">Caregiver ID</label>
+        <input type="number" class="form-control" id="caregiver_user_id" name="caregiver_user_id"
+            value="{{ appointment['caregiver_user_id'] if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="member_user_id" class="form-label">Member ID</label>
+        <input type="number" class="form-control" id="member_user_id" name="member_user_id"
+            value="{{ appointment['member_user_id'] if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="appointment_date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="appointment_date" name="appointment_date"
+            value="{{ appointment['appointment_date'] if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="appointment_time" class="form-label">Time</label>
+        <input type="time" class="form-control" id="appointment_time" name="appointment_time"
+            value="{{ appointment['appointment_time'] if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="work_hours" class="form-label">Work Hours</label>
+        <input type="number" class="form-control" id="work_hours" name="work_hours"
+            value="{{ appointment['work_hours'] if appointment else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select class="form-select" id="status" name="status">
+            <option value="pending" {{ 'selected' if appointment and appointment['status']=='pending' else '' }}>Pending
+            </option>
+            <option value="accepted" {{ 'selected' if appointment and appointment['status']=='accepted' else '' }}>
+                Accepted</option>
+            <option value="declined" {{ 'selected' if appointment and appointment['status']=='declined' else '' }}>
+                Declined</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/appointments" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
